@@ -8,26 +8,6 @@
 #include <stdlib.h>
 #include "core.h"
 
-
-typedef struct Array {
-    Any **elements;
-    int length;
-} Array;
-
-Array Array_native(Any **elements, int size);
-
-Array Array_(int size);
-
-void Array$(Array this);
-
-Any *get_Array(Array this, int index);
-
-void set_Array(Array this, int index, Any *value);
-
-int length_Array(Array this);
-
-Array copy_Array(Array this, int size);
-
 typedef struct Vector {
     Array array;
     int size;

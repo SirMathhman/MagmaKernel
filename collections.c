@@ -4,6 +4,8 @@
 
 #include "stdio.h"
 #include "collections.h"
+#include "core.h"
+
 
 Array Array_(int size) {
     Any **block = malloc(sizeof(Any *) * size);
