@@ -34,6 +34,6 @@ void clear(Any *this, Vector *(*cast)(Any *));
 
 bool isEmpty(Any *this, Vector *(*cast)(Any *));
 
-int size_Vector(Any *this, Object *(*cast)(Any *));
+int size_Vector(Any *this, Vector *(*cast)(Any *));
 
 #endif //MAGMAKERNEL_COLLECTION_H

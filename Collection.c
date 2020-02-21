@@ -36,3 +36,37 @@ Any *get_Vector(Any *this, Vector *(*cast)(Any *), int index) {
     }
 }
 
+Any *set_Vector(Any *this, Vector *(*cast)(Any *), int index, Any *element) {
+    check(this, cast, index);
+    if (catch(throw)) {
+        Any *previous = get_Array(this, index);
+        set_Array(&cast(this)->elements, index, element);
+        return previous;
+    } else {
+        return NULL;
+    }
+}
+
+bool contains(Any *this, Vector *(*cast)(Any *), Any *element) {
+    if (isEmpty(this, cast)) {
+        return false;
+    }
+    int size = size_Vector(this, cast);
+    for (int i = 0; i < size; ++i) {
+        void *ith = get_Vector(this, cast, i);
+        if (ith == element) {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool isEmpty(Any *this, Vector *(*cast)(Any *)) {
+    return size_Vector(this, cast) == 0;
+}
+
+int size_Vector(Any *this, Vector *(*cast)(Any *)) {
+    return cast(this)->size;
+}
+
+
