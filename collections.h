@@ -8,12 +8,13 @@
 #include <stdlib.h>
 #include "core.h"
 
-#endif //MAGMAKERNEL_COLLECTIONS_H
 
 typedef struct Array {
     Any **elements;
     int length;
 } Array;
+
+Array Array_native(Any **elements, int size);
 
 Array Array_(int size);
 
@@ -34,12 +35,27 @@ typedef struct Vector {
 
 Vector Vector_(int size);
 
+Vector Vector_empty();
+
+Vector Vector_native(Array array, int size);
+
 void Vector$(Vector this);
 
-void add(Vector this, Any *element);
+Any *first_Vector(Vector vector);
 
-Any *Vector_get(Vector this, int index);
+Any *last_Vector(Vector vector);
+
+void add_Vector(Vector *this, Any *element);
+
+bool full_Vector(Vector vector);
+
+void expand_Vector(Vector *this);
+
+Any *get_Vector(Vector this, int index);
 
 void set_Vector(Vector this, int index, Any *element);
 
-int Vector_size(Vector this);
+int size_Vector(Vector this);
+
+
+#endif //MAGMAKERNEL_COLLECTIONS_H

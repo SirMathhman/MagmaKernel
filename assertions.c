@@ -12,12 +12,12 @@ void setup(string name) {
 
 void pass() {
     printf("%s", assertionName);
-    printf("%s", " has passed.");
+    printf("%s", " has passed.\n");
 }
 
 void fail() {
     printf("%s", assertionName);
-    printf("%s", " has failed.");
+    printf("%s", " has failed.\n");
 }
 
 void assertFalse(bool value) {
@@ -86,6 +86,36 @@ void assertDoubleEquals(double value0, double value1) {
 
 void assertCharEquals(char value0, char value1) {
     if (value0 == value1) {
+        pass();
+    } else {
+        fail();
+    }
+}
+
+Assertion Assertion_(char *name, void (*action)()) {
+    Assertion result = {name, action};
+    return result;
+}
+
+void run_Assertion(Assertion this) {
+    setup(this.name);
+    this.action();
+}
+
+void append_AssertionBuilder(AssertionBuilder this, Assertion *assertion) {
+    add_Vector(&this.assertions, assertion);
+}
+
+void assertNotNull(Any *value) {
+    if (value == NULL) {
+        fail();
+    } else {
+        pass();
+    }
+}
+
+void assertNull(Any *value) {
+    if (value == NULL) {
         pass();
     } else {
         fail();

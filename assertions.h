@@ -7,8 +7,8 @@
 
 #include <stdio.h>
 #include "core.h"
+#include "collections.h"
 
-#endif //MAGMAKERNEL_ASSERTIONS_H
 
 void pass();
 
@@ -40,10 +40,20 @@ typedef struct Assertion {
     void (*action)();
 } Assertion;
 
+Assertion Assertion_(char *name, void (*action)());
+
+void run_Assertion(Assertion this);
+
 typedef struct AssertionBuilder {
-    Assertion *assertions;
+    Vector assertions;
 } AssertionBuilder;
 
-void append(AssertionBuilder self, Assertion assertion);
+void append_AssertionBuilder(AssertionBuilder this, Assertion *assertion);
+
+void assertNull(Any *value);
+
+void assertNotNull(Any *value);
 
 void run(AssertionBuilder builder);
+
+#endif //MAGMAKERNEL_ASSERTIONS_H
