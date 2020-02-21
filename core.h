@@ -28,17 +28,27 @@ void set_Array(Array *this, int index, Any *value);
 int length_Array(Array *this);
 
 typedef struct Object {
-    bool (*equals)(Any *this, struct Object *other);
+    long id;
 
-    int (*hashCode)(Any *this);
+    bool (*equals)(Any *, struct Object *);
 
-    string (*toString)(Any *this);
+    int (*hashCode)(Any *);
+
+    string (*toString)(Any *);
 } Object;
 
-bool equals_Object(Any *this, Object *(*cast)(Any *this), Object *other);
+Object Object_(long id, bool (*equals)(Any *, struct Object *),
+               int (*hashCode)(Any *),
+               string (*toString)(Any *));
 
-bool hashCode_Object(Any *this, Object *(*cast)(Any *this));
+void Object$(Any *this, Object *(*cast)(Any *this));
 
-string toString_Object(Any *this, Object *(*cast)(Any *this));
+long id_Object(Any *this, Object *(*cast)(Any *));
+
+bool equals_Object(Any *this, Object *(*cast)(Any *), Object *other);
+
+bool hashCode_Object(Any *this, Object *(*cast)(Any *));
+
+string toString_Object(Any *this, Object *(*cast)(Any *));
 
 #endif //MAGMAKERNEL_CORE_H

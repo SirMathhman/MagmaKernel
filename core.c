@@ -27,15 +27,43 @@ int length_Array(Array *this) {
 }
 
 bool equals_Object(Any *this, Object *(*cast)(Any *), Object *other) {
-    return cast(this)->equals(this, other);
+    bool (*equals)(void *, struct Object *) = cast(this)->equals;
+    if (equals == NULL) {
+        return false;
+    } else {
+        return equals(this, other);
+    }
 }
 
 bool hashCode_Object(Any *this, Object *(*cast)(Any *)) {
-    return cast(this)->hashCode(this);
+    int (*hashCode)(void *) = cast(this)->hashCode;
+    if (hashCode == NULL) {
+        return 0;
+    } else {
+        return hashCode(this);
+    }
 }
 
 string toString_Object(Any *this, Object *(*cast)(Any *)) {
-    return cast(this)->toString(this);
+    string (*toString)(void *) = cast(this)->toString;
+    if (toString == NULL) {
+        /*
+         * TODO: default string serialization
+         * id + hashCode
+         */
+        return "";
+    } else {
+        return toString(this);
+    }
 }
 
+long id_Object(Any *this, Object *(*cast)(Any *)) {
+    return cast(this)->id;
+}
+
+Object Object_(long id, bool (*equals)(Any *, struct Object *), int (*hashCode)(Any *),
+               string (*toString)(Any *)) {
+    Object this = {id, equals, hashCode, toString};
+    return this;
+}
 

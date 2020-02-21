@@ -7,9 +7,10 @@
 
 #include "core.h"
 
+static const long Vector_ID = 89713765L;
 typedef struct Vector {
-    Object *Object;
-    Array *elements;
+    Object Object;
+    Array elements;
     int size;
 } Vector;
 
