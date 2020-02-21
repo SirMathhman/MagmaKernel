@@ -29,3 +29,13 @@ int length_Array(Array *this) {
 bool equals_Object(Any *this, Object *(*cast)(Any *), Object *other) {
     return cast(this)->equals(this, other);
 }
+
+bool hashCode_Object(Any *this, Object *(*cast)(Any *)) {
+    return cast(this)->hashCode(this);
+}
+
+string toString_Object(Any *this, Object *(*cast)(Any *)) {
+    return cast(this)->toString(this);
+}
+
+

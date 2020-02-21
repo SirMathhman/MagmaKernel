@@ -29,8 +29,16 @@ int length_Array(Array *this);
 
 typedef struct Object {
     bool (*equals)(Any *this, struct Object *other);
+
+    int (*hashCode)(Any *this);
+
+    string (*toString)(Any *this);
 } Object;
 
 bool equals_Object(Any *this, Object *(*cast)(Any *this), Object *other);
+
+bool hashCode_Object(Any *this, Object *(*cast)(Any *this));
+
+string toString_Object(Any *this, Object *(*cast)(Any *this));
 
 #endif //MAGMAKERNEL_CORE_H
