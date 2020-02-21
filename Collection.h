@@ -24,7 +24,7 @@ Any *set_Vector(Any *this, Vector *(*cast)(Any *), int index, Any *element);
 
 void add_Vector(Any *this, Vector *(*cast)(Any *), Any *element);
 
-bool removeIndex_Vector(Any *this, Vector *(*cast)(Any *), int index);
+Any *removeIndex_Vector(Any *this, Vector *(*cast)(Any *), int index);
 
 bool removeElement_Vector(Any *this, Vector *(*cast)(Any *), Any *element);
 

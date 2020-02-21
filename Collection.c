@@ -54,8 +54,12 @@ bool contains(Any *this, Vector *(*cast)(Any *), Any *element) {
     int size = size_Vector(this, cast);
     for (int i = 0; i < size; ++i) {
         void *ith = get_Vector(this, cast, i);
-        if (ith == element) {
-            return true;
+        if (catch(throw)) {
+            if (ith == element) {
+                return true;
+            }
+        } else {
+            return false;
         }
     }
     return false;
@@ -67,6 +71,24 @@ bool isEmpty(Any *this, Vector *(*cast)(Any *)) {
 
 int size_Vector(Any *this, Vector *(*cast)(Any *)) {
     return cast(this)->size;
+}
+
+Any *clearElement(Any *this) {
+    return NULL;
+}
+
+void clear(Any *this, Vector *(*cast)(Any *)) {
+    map_Array(&cast(this)->elements, clearElement);
+}
+
+Any *removeIndex_Vector(Any *this, Vector *(*cast)(Any *), int index) {
+    Any *previous = get_Vector(this, cast, index);
+    Array *elements = &cast(this)->elements;
+    for (int i = index + 1; i < length_Array(elements); ++i) {
+        Any *element = get_Array(elements, i);
+        set_Array(element, i - 1, element);
+    }
+    return previous;
 }
 
 
