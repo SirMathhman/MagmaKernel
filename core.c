@@ -2,13 +2,8 @@
 // Created by SirMathhman on 2/20/2020.
 //
 
+#include <stdlib.h>
 #include "core.h"
-
-bool equals_Object(Any *this, Object *(*cast)(Any *), Object *other) {
-    return cast(this)->equals(this, other);
-}
-
-#include "stdlib.h"
 
 Array Array_(int length) {
     Array result = {malloc(length * sizeof(Any *)), length};
@@ -29,4 +24,8 @@ void set_Array(Array *this, int index, Any *value) {
 
 int length_Array(Array *this) {
     return this->length;
+}
+
+bool equals_Object(Any *this, Object *(*cast)(Any *), Object *other) {
+    return cast(this)->equals(this, other);
 }
