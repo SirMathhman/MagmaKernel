@@ -18,9 +18,9 @@ Any *get_Array(Array this, int index) {
     return this.elements[index];
 }
 
-void set_Array(Array this, int index, Any *value) {
-    if (index < length_Array(this)) {
-        this.elements[index] = value;
+void set_Array(Array *this, int index, Any *value) {
+    if (index < length_Array(*this)) {
+        this->elements[index] = value;
     }
 }
 

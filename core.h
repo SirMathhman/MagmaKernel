@@ -25,7 +25,7 @@ void Array$(Array this);
 
 Any *get_Array(Array this, int index);
 
-void set_Array(Array this, int index, Any *value);
+void set_Array(Array *this, int index, Any *value);
 
 int length_Array(Array this);
 
