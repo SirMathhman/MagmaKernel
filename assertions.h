@@ -20,7 +20,7 @@ void assertFalse(bool value);
 
 void assertTrue(bool value);
 
-void assertSame(any *value0, any *value1);
+void assertSame(Any *value0, Any *value1);
 
 void assertIntEquals(int value0, int value1);
 
@@ -33,3 +33,17 @@ void assertFloatEquals(float value0, float value1);
 void assertDoubleEquals(double value0, double value1);
 
 void assertCharEquals(char value0, char value1);
+
+typedef struct Assertion {
+    char *name;
+
+    void (*action)();
+} Assertion;
+
+typedef struct AssertionBuilder {
+    Assertion *assertions;
+} AssertionBuilder;
+
+void append(AssertionBuilder self, Assertion assertion);
+
+void run(AssertionBuilder builder);

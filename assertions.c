@@ -36,7 +36,7 @@ void assertTrue(bool value) {
     }
 }
 
-void assertSame(any *value0, any *value1) {
+void assertSame(Any *value0, Any *value1) {
     if (value0 == value1) {
         pass();
     } else {
