@@ -13,9 +13,19 @@ typedef void Any;
 #define true 1
 
 typedef struct Array {
-    Any **elements;
+    Any **content;
     int length;
 } Array;
+
+Array Array_(int length);
+
+void Array$(Array *array);
+
+Any *get_Array(Array *this, int index);
+
+void set_Array(Array *this, int index, Any *value);
+
+int length_Array(Array *this);
 
 typedef struct Object {
     bool (*equals)(Any *this, struct Object *other);
