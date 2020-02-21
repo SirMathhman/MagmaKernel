@@ -3,5 +3,9 @@ project(MagmaKernel C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(MagmaKernel core.c core.h)
-add_executable(MagmaKernelTest core.c core.h test.c test.h)
+add_library(MagmaKernel core.c core.h Collection.c Collection.h)
+add_executable(MagmaKernelCompiler main.c)
+add_executable(MagmaKernelTest test.c test.h)
+
+target_link_libraries(MagmaKernelCompiler MagmaKernel)
+target_link_libraries(MagmaKernelTest MagmaKernel)

@@ -1,0 +1,8 @@
+//
+// Created by SirMathhman on 2/20/2020.
+//
+
+#ifndef MAGMAKERNEL_COLLECTION_H
+#define MAGMAKERNEL_COLLECTION_H
+
+#endif //MAGMAKERNEL_COLLECTION_H
