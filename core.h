@@ -32,8 +32,6 @@ int length_Array(Array this);
 Array copy_Array(Array this, int size);
 
 typedef struct Object {
-    struct Object (*toObject)(Array this);
-
     bool (*equals)(Array this, struct Object *other);
 } Object;
 
