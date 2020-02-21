@@ -59,4 +59,10 @@ int size_Vector(Vector this);
 
 void forEach_Vector(Vector this, Array instances, void (*action)(Array, Any *));
 
+typedef struct VectorMap {
+    Vector *keys;
+    Vector *values;
+} VectorMap;
+
+
 #endif //MAGMAKERNEL_COLLECTIONS_H
