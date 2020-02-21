@@ -12,6 +12,12 @@ typedef void Any;
 #define false 0
 #define true 1
 
+Any *_thrown = NULL;
+
+void throw(Any *value);
+
+bool catch(void (*action)(Any *));
+
 typedef struct Array {
     Any **content;
     int length;

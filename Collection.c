@@ -19,3 +19,20 @@ Vector Vector_of(int size) {
     Vector result = {Object, elements, size};
     return result;
 }
+
+void check(Any *this, Vector *(*cast)(Any *), int index) {
+    int elementLength = cast(this)->elements.length;
+    if (index < elementLength) {
+        throw("IndexOutOfBounds");
+    }
+}
+
+Any *get_Vector(Any *this, Vector *(*cast)(Any *), int index) {
+    check(this, cast, index);
+    if (catch(throw)) {
+        return get_Array(&cast(this)->elements, index);
+    } else {
+        return NULL;
+    }
+}
+

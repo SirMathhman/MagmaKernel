@@ -67,3 +67,16 @@ Object Object_(long id, bool (*equals)(Any *, struct Object *), int (*hashCode)(
     return this;
 }
 
+void throw(Any *value) {
+    _thrown = value;
+}
+
+bool catch(void (*action)(Any *)) {
+    if (_thrown == NULL) {
+        return true;
+    } else {
+        action(_thrown);
+        return false;
+    }
+}
+
