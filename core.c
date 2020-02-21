@@ -3,3 +3,7 @@
 //
 
 #include "core.h"
+
+bool equals_Object(Any *this, Object *(*cast)(Any *), Object *other) {
+    return cast(this)->equals(this, other);
+}

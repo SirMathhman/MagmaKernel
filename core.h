@@ -7,9 +7,20 @@
 
 typedef char *string;
 typedef int bool;
-typedef void _;
+typedef void Any;
 
 #define false 0
 #define true 1
+
+typedef struct Array {
+    Any **elements;
+    int length;
+} Array;
+
+typedef struct Object {
+    bool (*equals)(Any *this, struct Object *other);
+} Object;
+
+bool equals_Object(Any *this, Object *(*cast)(Any *this), Object *other);
 
 #endif //MAGMAKERNEL_CORE_H
