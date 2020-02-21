@@ -48,7 +48,7 @@ Any *set_Vector(Any *this, Vector *(*cast)(Any *), int index, Any *element) {
 }
 
 bool contains(Any *this, Vector *(*cast)(Any *), Any *element) {
-    if (isEmpty(this, cast)) {
+    if (isEmpty_Vector(this, cast)) {
         return false;
     }
     int size = size_Vector(this, cast);
@@ -65,7 +65,7 @@ bool contains(Any *this, Vector *(*cast)(Any *), Any *element) {
     return false;
 }
 
-bool isEmpty(Any *this, Vector *(*cast)(Any *)) {
+bool isEmpty_Vector(Any *this, Vector *(*cast)(Any *)) {
     return size_Vector(this, cast) == 0;
 }
 
@@ -90,5 +90,50 @@ Any *removeIndex_Vector(Any *this, Vector *(*cast)(Any *), int index) {
     }
     return previous;
 }
+
+Optional Optional_empty() {
+    return Optional_of(NULL);
+}
+
+Optional Optional_of(Object *value) {
+    Object Object = Object_(Optional_ID, NULL, NULL, NULL);
+    Optional result = {Object, value};
+    return result;
+}
+
+bool isEmpty_Optional(Optional this) {
+    return this.value == NULL;
+}
+
+bool isPresent_Optional(Optional this) {
+    return !isEmpty_Optional(this);
+}
+
+Object *get_Optional(Optional this) {
+    return this.value;
+}
+
+Object *getOrElse_Optional(Optional this, Any *other) {
+    if (isEmpty_Optional(this)) {
+        return other;
+    } else {
+        return this.value;
+    }
+}
+
+Object *getOrThrow_Optional(Optional this) {
+    if (isEmpty_Optional(this)) {
+        throw("ValueNotPresent");
+        return NULL;
+    } else {
+        return get_Optional(this);
+    }
+}
+
+
+
+
+
+
 
 
