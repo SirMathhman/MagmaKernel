@@ -47,6 +47,7 @@ void add_Vector(Vector *this, Any *element) {
     check_Vector(this);
     int size = size_Vector(*this);
     set_Vector(*this, size, element);
+    this->size = this->size + 1;
 }
 
 int size_Vector(Vector this) {
@@ -104,6 +105,13 @@ void expand_Vector(Vector *this) {
     Array$(this->array);
     this->array = newArray;
     this->size = oldSize;
+}
+
+void forEach_Vector(Vector this, Array instances, void (*action)(Array, Any *)) {
+    for (int i = 0; i < size_Vector(this); i++) {
+        void *element = get_Vector(this, i);
+        action(instances, element);
+    }
 }
 
 

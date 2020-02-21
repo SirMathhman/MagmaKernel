@@ -57,5 +57,6 @@ void set_Vector(Vector this, int index, Any *element);
 
 int size_Vector(Vector this);
 
+void forEach_Vector(Vector this, Array instances, void (*action)(Array, Any *));
 
 #endif //MAGMAKERNEL_COLLECTIONS_H

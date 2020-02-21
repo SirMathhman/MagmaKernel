@@ -45,15 +45,17 @@ Assertion Assertion_(char *name, void (*action)());
 void run_Assertion(Assertion this);
 
 typedef struct AssertionBuilder {
-    Vector assertions;
+    Vector *names;
 } AssertionBuilder;
 
-void append_AssertionBuilder(AssertionBuilder this, Assertion *assertion);
+AssertionBuilder AssertionBuilder_(Vector *vector);
+
+void append_AssertionBuilder(AssertionBuilder *this, Assertion *assertion);
 
 void assertNull(Any *value);
 
 void assertNotNull(Any *value);
 
-void run(AssertionBuilder builder);
+void run_AssertionBuilder(AssertionBuilder builder);
 
 #endif //MAGMAKERNEL_ASSERTIONS_H

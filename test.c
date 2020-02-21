@@ -4,15 +4,27 @@
 
 #ifndef test
 #define test
+
 #include "collections.h"
 #include "assertions.h"
 #include "primitives.h"
+
 #endif
 
-int main() {
-    setup("Assertions");
+void testTrue(){
     assertTrue(true);
+}
+
+void testFalse(){
     assertFalse(false);
+}
+
+int main() {
+    Vector empty = Vector_empty();
+    AssertionBuilder builder = AssertionBuilder_(&empty);
+    Assertion trueTest = Assertion_("TestTrue", testTrue);
+    append_AssertionBuilder(&builder, &trueTest);
+    run_AssertionBuilder(builder);
 
     setup("Array");
     Any **block = malloc(sizeof(void *) * 4);
@@ -52,13 +64,13 @@ int main() {
     assertSame(&x, last_Vector(o));
 
     assertFalse(full_Vector(o));
-   expand_Vector(&o);
+    expand_Vector(&o);
 
     assertIntEquals(20, length_Array(o.array));
     Vector$(o);
 
-    Vector empty = Vector_empty();
-    add_Vector(&empty, &x);
+    Vector e = Vector_empty();
+    add_Vector(&e, &x);
     void *first = first_Vector(empty);
     assertIntEquals(x, *(int *) first);
     return 0;

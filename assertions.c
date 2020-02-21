@@ -102,8 +102,8 @@ void run_Assertion(Assertion this) {
     this.action();
 }
 
-void append_AssertionBuilder(AssertionBuilder this, Assertion *assertion) {
-    add_Vector(&this.assertions, assertion);
+void append_AssertionBuilder(AssertionBuilder *this, Assertion *assertion) {
+    add_Vector(this->assertions, assertion);
 }
 
 void assertNotNull(Any *value) {
@@ -120,4 +120,19 @@ void assertNull(Any *value) {
     } else {
         fail();
     }
+}
+
+AssertionBuilder AssertionBuilder_(Vector *vector) {
+    AssertionBuilder result = {vector};
+    return result;
+}
+
+void bridge(Array instances, void *item) {
+    run_Assertion(*(Assertion *) item);
+}
+
+void run_AssertionBuilder(AssertionBuilder builder) {
+    Array empty = Array_(0);
+    forEach_Vector(*builder.assertions, empty, bridge);
+    Array$(empty);
 }
