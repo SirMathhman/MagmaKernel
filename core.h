@@ -36,11 +36,11 @@ bool hashCode_Object(Object *this);
 
 string toString_Object(Object *this);
 
-Any *_thrown = NULL;
+Object *_thrown = NULL;
 
-void throw(Object *value);
+void throw(Object value);
 
-bool catch(void (*action)(Object *));
+bool catch(void (*action)(Object));
 
 typedef struct Array {
     Any **content;

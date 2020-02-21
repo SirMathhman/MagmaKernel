@@ -4,6 +4,7 @@
 
 #include "math.h"
 #include "stddef.h"
+#include "Throwable.h"
 #include "Collection.h"
 
 Vector Vector_empty() {
@@ -23,7 +24,7 @@ Vector Vector_of(int size) {
 void check(Any *this, Vector *(*cast)(Any *), int index) {
     int elementLength = cast(this)->elements.length;
     if (index < elementLength) {
-        throw("IndexOutOfBounds");
+        throw(Throwable_Object(Throwable_("Index out of bounds.")));
     }
 }
 
@@ -123,7 +124,7 @@ Object *getOrElse_Optional(Optional this, Any *other) {
 
 Object *getOrThrow_Optional(Optional this) {
     if (isEmpty_Optional(this)) {
-        throw("ValueNotPresent");
+        throw(Throwable_Object(Throwable_("No such element present.")));
         return NULL;
     } else {
         return get_Optional(this);

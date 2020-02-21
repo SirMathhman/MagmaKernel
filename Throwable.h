@@ -15,6 +15,8 @@ typedef struct Throwable {
     char *message;
 } Throwable;
 
+Object Throwable_Object(Throwable throwable);
+
 Throwable Throwable_(char *message);
 
 void Throwable$(Object *this, Throwable (*cast)(Object *));

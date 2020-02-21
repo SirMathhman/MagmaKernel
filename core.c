@@ -67,15 +67,18 @@ Object Object_(long id, bool (*equals)(Any *, struct Object *), int (*hashCode)(
     return this;
 }
 
-void throw(Object *value) {
-    _thrown = value;
+void throw(Object value) {
+    if (_thrown == NULL) {
+        _thrown = malloc(sizeof(Object));
+    }
+    _thrown[0] = value;
 }
 
-bool catch(void (*action)(Object *)) {
+bool catch(void (*action)(Object)) {
     if (_thrown == NULL) {
         return true;
     } else {
-        action(_thrown);
+        action(*_thrown);
         return false;
     }
 }

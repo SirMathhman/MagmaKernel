@@ -17,3 +17,7 @@ Throwable Throwable_(char *message) {
 void Throwable$(Object *this, Throwable (*cast)(Object *)) {
     free(getMessage_Throwable(this, cast));
 }
+
+Object Throwable_Object(Throwable throwable) {
+    return throwable.Object;
+}
