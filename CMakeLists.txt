@@ -3,7 +3,7 @@ project(MagmaKernel C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_library(MagmaKernel lang.c lang.h)
+add_library(MagmaKernel app.c app.h)
 add_executable(MagmaKernelCompiler main.c)
 add_executable(MagmaKernelTest test.c)
 
